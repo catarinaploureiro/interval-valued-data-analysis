@@ -5,9 +5,5 @@
 *.pdf
 *.txt
 Figures/*
-trials.r
-qualar_entrecampos.r
-qualar_2.r
-qualar_log.r
-unused.r
+dev/*
 Outliers.xlsx
