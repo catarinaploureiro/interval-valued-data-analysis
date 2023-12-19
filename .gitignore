@@ -3,4 +3,11 @@
 .RData
 .Ruserdata
 *.pdf
-data/*
+*.txt
+Figures/*
+trials.r
+qualar_entrecampos.r
+qualar_2.r
+qualar_log.r
+unused.r
+Outliers.xlsx
