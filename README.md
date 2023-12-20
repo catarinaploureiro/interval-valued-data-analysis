@@ -10,4 +10,8 @@ It also holds the code for the appplied work "Air Quality Data Analysis with Sym
 
  - `setup.R` contains the implementation of several functions that compose the method.
  - `example.R` contains a simple example.
- - `qualar_log.R` contains the application of the method on an air quality dataset obtained from a monitoring station in Entrecampos, Lisbon (https://qualar.apambiente.pt/).
+ - `qualar_log.R` contains the application of the method on an air quality dataset.
+
+## Data
+
+Files containing the air quality dataset obtained from a monitoring station in Entrecampos, Lisbon. Each file corresponds to 9 pollutants' concentration measures during the years 2019, 2020, and 2021. These files were retrieved from the Portuguese Environment Agency database available at https://qualar.apambiente.pt/.
