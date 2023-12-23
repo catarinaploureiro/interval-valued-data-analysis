@@ -8,9 +8,9 @@ It also holds the code for the appplied work "Air Quality Data Analysis with Sym
 
 ## Code
 
- - `setup.R` contains the implementation of several functions that compose the method.
- - `example.R` contains a simple example.
- - `qualar_log.R` contains the application of the method on an air quality dataset.
+ - `setup.r` contains the implementation of several functions that compose the method.
+ - `example.r` contains a simple example.
+ - `air_quality.r` contains the application of the method on an air quality dataset.
 
 ## Data
 
