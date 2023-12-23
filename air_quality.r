@@ -61,6 +61,11 @@ statsNA(entrecampos[,7])
 #Remove Benzene
 entrecampos<-entrecampos[, -7]
 
+colnames(entrecampos)<-c("Timestamp", "Sulphur Dioxide (µg/m3)", "Particles < 10 µm (µg/m3)",
+                    "Ozone (µg/m3)", "Nitrogen Dioxide (µg/m3)", "Carbon Monoxide (µg/m3)",
+                    "Particles < 2.5 µm (µg/m3)", "Nitrogen Oxides (µg/m3)", "Nitrogen Monoxide (µg/m3)","Day")
+
+
 #Plot histograms
 par(mfrow=c(2,4))
 for (i in 2:9){
@@ -83,9 +88,6 @@ entrecampos_log10_min_intp<-na_interpolation(entrecampos_log10_min, option="line
 entrecampos_log10_mean_ma<-na_ma(entrecampos_log10_mean, k=20, weighting = "linear")
 
 #Plot daily average mean
-colnames(entrecampos_log10_mean_ma)<-c("Group.1", "Sulphur Dioxide (µg/m3)", "Particles < 10 µm (µg/m3)",
-                    "Ozone (µg/m3)", "Nitrogen Dioxide (µg/m3)", "Carbon Monoxide (µg/m3)",
-                    "Particles < 2.5 µm (µg/m3)", "Nitrogen Oxides (µg/m3)", "Nitrogen Monoxide (µg/m3)")
 entrecampos_mean_1col_log10<-melt(as.data.table(entrecampos_log10_mean_ma), 
                                     id.vars=c('Group.1'), variable.name = 'Pollutant')
 entrecampos_mean_1col_log10$Pollutant<-factor(entrecampos_mean_1col_log10$Pollutant, 
