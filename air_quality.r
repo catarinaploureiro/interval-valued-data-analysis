@@ -376,12 +376,12 @@ outliers_heatmap[outliers_pca_pc1,2]<-2
 outliers_heatmap[outliers_pca_pc2,2]<-3
 outliers_heatmap<-outliers_heatmap[outliers_all,]
 
-pdf(file="./Figures/Log/Outliers_Log_Total.pdf", width = 6, height = 25)
+pdf(file="./Figures/Log/Outliers_Log_Total.pdf", width = 6.5, height = 25)
 heatmap.2(outliers_heatmap, 
         scale = "none", Rowv = NA, Colv = NA, dendrogram = "none",
         col=c("#eceeef", "#00B0F6","#F8766D", "#A3A500", "#E76BF3", "#00BF7D"),
         margins=c(2,19),srtCol=0,labRow = outliers_total_true[,1],
-        labCol = c("Symbolic\nPCA", "Classical\nPCA", "ROBPCA", "Isolation\nForest"),
+        labCol = c("Symbolic\nPCA", "Conventional\nPCA", "ROBPCA", "Isolation\nForest"),
         cexRow = 1,cexCol = 1,adjCol=c(0.5,0.5),
         key=FALSE, trace = "none", density.info = "none",
         lwid = c(1,50), lhei=c(1, 60), colsep=1:4, rowsep=1:156)
