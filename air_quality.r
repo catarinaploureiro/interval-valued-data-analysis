@@ -353,7 +353,8 @@ outliers_iso_forest<-pred_iso_forest_mean_log10>0.55
 pdf(file="./Figures/Log/iso_forest_log.pdf", width = 6, height = 6)
 col = rep('black',1096); col[outliers_iso_forest] = 'red'
 plot(entrecampos_log10_mean_ma[,1],pred_iso_forest_mean_log10,
-    pch=20,col=col,xlab="",ylab="Outlier Score", main="Isolation Forest")
+    pch=20,col=col,xlab="Observations",ylab="Outlier Score", main="Isolation Forest", cex.lab=1.3, cex.axis=1.3, cex.main=1.3, cex.sub=1.3)
+abline(h=0.55)
 dev.off()
 
 ###
