@@ -91,12 +91,11 @@ entrecampos_log10_mean_ma<-na_ma(entrecampos_log10_mean, k=20, weighting = "line
 entrecampos_mean_1col_log10<-melt(as.data.table(entrecampos_log10_mean_ma), 
                                     id.vars=c('Group.1'), variable.name = 'Pollutant')
 entrecampos_mean_1col_log10$Pollutant<-factor(entrecampos_mean_1col_log10$Pollutant, 
-                                        levels = c("Carbon Monoxide (µg/m3)", "Nitrogen Dioxide (µg/m3)",
-                                        "Nitrogen Monoxide (µg/m3)", "Nitrogen Oxides (µg/m3)",
-                                        "Ozone (µg/m3)",  "Particles < 10 µm (µg/m3)",
-                                        "Particles < 2.5 µm (µg/m3)",  "Sulphur Dioxide (µg/m3)"))
+                                        levels = c("Carbon Monoxide", "Nitrogen Dioxide", 
+                                        "Nitrogen Monoxide", "Nitrogen Oxides",  "Ozone",  
+                                        "Particles < 10 µm", "Particles < 2.5 µm",  "Sulphur Dioxide"))
 
-pdf(file="./Figures/Log/Mean_all_lines_log.pdf", width = 12, height = 4)
+pdf(file="./Figures/QualAr/Log/Mean_all_lines_log.pdf", width = 12, height = 4)
 ggplot(entrecampos_mean_1col_log10, aes(Group.1, value)) + geom_line(aes(colour = Pollutant)) + 
     theme(text = element_text(size=20), axis.title.x = element_blank(), axis.title.y = element_blank())
 dev.off()
@@ -299,22 +298,24 @@ dev.off()
 PCs_log10 <- data.frame(PC1s=pca1_sym_log10, PC1c=pca_mean_pcs_log10[,1],
                     PC2s=pca2_sym_log10, PC2c=pca_mean_pcs_log10[,2],
                     PC3s=pca3_sym_log10)
-PCs_log10$id <- c("Sulphur Dioxide (µg/m3)",  "Particles < 10 µm (µg/m3)",  
-                    "Ozone (µg/m3)", "Nitrogen Dioxide (µg/m3)",  
-                    "Carbon Monoxide (µg/m3)", "Particles < 2.5 µm (µg/m3)", 
-                    "Nitrogen Oxides (µg/m3)", "Nitrogen Monoxide (µg/m3)")
+PCs_log10$id <- c("Sulphur Dioxide",  "Particles < 10 µm",  
+                    "Ozone", "Nitrogen Dioxide",  
+                    "Carbon Monoxide", "Particles < 2.5 µm", 
+                    "Nitrogen Oxides", "Nitrogen Monoxide")
 PCs_1col_log10 <- reshape2::melt(PCs_log10,id.vars = "id")
-PCs_1col_log10$id<-factor(PCs_1col$id, levels = c("Carbon Monoxide (µg/m3)", 
-                    "Nitrogen Dioxide (µg/m3)", "Nitrogen Monoxide (µg/m3)", 
-                    "Nitrogen Oxides (µg/m3)",  "Ozone (µg/m3)",  
-                    "Particles < 10 µm (µg/m3)", "Particles < 2.5 µm (µg/m3)",  
-                    "Sulphur Dioxide (µg/m3)"))
+PCs_1col_log10$id<-factor(PCs_1col_log10$id, levels = c("Carbon Monoxide", 
+                    "Nitrogen Dioxide", "Nitrogen Monoxide", 
+                    "Nitrogen Oxides",  "Ozone",  
+                    "Particles < 10 µm", "Particles < 2.5 µm",  
+                    "Sulphur Dioxide"))
 
-pdf(file="./Figures/Log/PCs_barplot_log.pdf", width = 12, height = 4)
+pdf(file="./Figures/QualAr/Log/PCs_barplot_log.pdf", width = 12, height = 4)
 ggplot(PCs_1col_log10,aes(x=value, y = id, fill=id)) + 
-    facet_wrap(~variable,nrow=1) + geom_bar(stat="identity") +
-    theme(legend.position = "none",axis.title.x=element_blank(),
-        axis.title.y=element_blank(), text = element_text(size=20))
+        facet_wrap(~variable,nrow=1) + geom_bar(stat="identity") + theme_bw() +
+        theme(legend.position = "none",axis.title.x=element_blank(),
+                axis.title.y=element_blank(), text = element_text(size=20)) +
+        scale_fill_manual(values = c('#ff7f0e', '#1f77b4', '#2ca02c', '#d62728', '#7f7f7f', '#17becf', '#bcbd22', '#9467bd')
+)
 dev.off()
 
 ###
