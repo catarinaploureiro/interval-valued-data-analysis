@@ -94,10 +94,19 @@ entrecampos_mean_1col_log10$Pollutant<-factor(entrecampos_mean_1col_log10$Pollut
                                         levels = c("Carbon Monoxide", "Nitrogen Dioxide", 
                                         "Nitrogen Monoxide", "Nitrogen Oxides",  "Ozone",  
                                         "Particles < 10 µm", "Particles < 2.5 µm",  "Sulphur Dioxide"))
-
-pdf(file="./Figures/QualAr/Log/Mean_all_lines_log.pdf", width = 12, height = 4)
-ggplot(entrecampos_mean_1col_log10, aes(Group.1, value)) + geom_line(aes(colour = Pollutant)) + 
-    theme(text = element_text(size=20), axis.title.x = element_blank(), axis.title.y = element_blank())
+entrecampos_mean_1col_log10$Year<-factor(year(entrecampos_mean_1col_log10$Group.1))
+entrecampos_mean_1col_log10$Day<-yday(entrecampos_mean_1col_log10$Group.1)
+pdf(file="./Figures/QualAr/Log/Mean_all_lines_log_year.pdf", width = 12, height = 6)
+ggplot(entrecampos_mean_1col_log10, aes(Day, value, colour = Pollutant)) + 
+    geom_line(key_glyph = "rect") + theme_bw() + 
+    theme(text = element_text(size=18), axis.title.x = element_blank(), legend.title = element_blank(), 
+        axis.title.y = element_text(size=14)) + coord_cartesian(expand = FALSE,clip = "off") +
+    labs(y="Pollutant  log-Concentration (µg/m3)") +  
+    scale_color_manual(values = c('#ff7f0e', '#1f77b4', '#2ca02c', '#d62728', 
+                                '#7f7f7f', '#17becf', '#bcbd22', '#9467bd')) +
+    scale_x_continuous(breaks = c(1,32,60,91,121,152,182,213,244,274,305,335), 
+        labels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))+
+    facet_wrap(~Year, nrow = 3)
 dev.off()
 
 #Plot symbolic data with interpolated values
@@ -314,7 +323,8 @@ ggplot(PCs_1col_log10,aes(x=value, y = id, fill=id)) +
         facet_wrap(~variable,nrow=1) + geom_bar(stat="identity") + theme_bw() +
         theme(legend.position = "none",axis.title.x=element_blank(),
                 axis.title.y=element_blank(), text = element_text(size=20)) +
-        scale_fill_manual(values = c('#ff7f0e', '#1f77b4', '#2ca02c', '#d62728', '#7f7f7f', '#17becf', '#bcbd22', '#9467bd')
+        scale_fill_manual(values = c('#ff7f0e', '#1f77b4', '#2ca02c', '#d62728', 
+                                        '#7f7f7f', '#17becf', '#bcbd22', '#9467bd')
 )
 dev.off()
 
@@ -354,7 +364,8 @@ outliers_iso_forest<-pred_iso_forest_mean_log10>0.55
 pdf(file="./Figures/Log/iso_forest_log.pdf", width = 6, height = 6)
 col = rep('black',1096); col[outliers_iso_forest] = 'red'
 plot(entrecampos_log10_mean_ma[,1],pred_iso_forest_mean_log10,
-    pch=20,col=col,xlab="Observations",ylab="Outlier Score", main="Isolation Forest", cex.lab=1.3, cex.axis=1.3, cex.main=1.3, cex.sub=1.3)
+    pch=20,col=col,xlab="Observations",ylab="Outlier Score", main="Isolation Forest", 
+    cex.lab=1.3, cex.axis=1.3, cex.main=1.3, cex.sub=1.3)
 abline(h=0.55)
 dev.off()
 
