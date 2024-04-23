@@ -304,9 +304,9 @@ points(entrecampos_log10_mean_ma[which(pca_mean_log10[,2]>(3*sd(pca_mean_log10[,
 dev.off()
 
 #Plot PCs
-PCs_log10 <- data.frame(PC1s=pca1_sym_log10, PC1c=pca_mean_pcs_log10[,1],
-                    PC2s=pca2_sym_log10, PC2c=pca_mean_pcs_log10[,2],
-                    PC3s=pca3_sym_log10)
+PCs_log10 <- data.frame(PC1s=pca1_sym_log10, PC2s=pca2_sym_log10,
+                        PC3s=pca3_sym_log10, PC1c=pca_mean_pcs_log10[,1],
+                        PC2c=pca_mean_pcs_log10[,2])
 PCs_log10$id <- c("Sulphur Dioxide",  "Particles < 10 µm",  
                     "Ozone", "Nitrogen Dioxide",  
                     "Carbon Monoxide", "Particles < 2.5 µm", 
