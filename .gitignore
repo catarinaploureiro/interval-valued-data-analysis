@@ -4,6 +4,4 @@
 .Ruserdata
 *.pdf
 *.txt
-Figures/*
-dev/*
 Outliers.xlsx
