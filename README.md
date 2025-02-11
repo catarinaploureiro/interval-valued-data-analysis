@@ -6,6 +6,10 @@ This repository holds code that implements the method proposed by Lin et al. (20
 
 It also holds the code for the appplied work "Air Quality Data Analysis with Symbolic Principal Components" which was presented at the XXVI Congresso da Sociedade Portuguesa de Estatística (https://w3.math.uminho.pt/SPE2023/) and at the Symbolic Data Analysis Workshop 2023 (https://sda2018.wixsite.com/sda2023paris).
 
+This work has now been published:
+
+Loureiro, C.P., Oliveira, M.R., Brito, P., Oliveira, L. (2025). Air Quality Data Analysis with Symbolic Principal Components. In: Henriques-Rodrigues, L., Menezes, R., Machado, L.M., Faria, S., de Carvalho, M. (eds) New Frontiers in Statistics and Data Science. SPE 2021. Springer Proceedings in Mathematics & Statistics, vol 469. Springer, Cham. https://doi.org/10.1007/978-3-031-68949-9_25
+
 ## Code
 
  - `setup.r` contains the implementation of several functions that compose the method.
